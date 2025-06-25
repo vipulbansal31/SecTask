@@ -1,0 +1,114 @@
+import java.util.*;
+class Student1{
+        private int ID;
+        private String name;
+        private double marks;
+        public Student1(int id, String name, double marks){
+            this.ID=id;
+            this.name=name;
+            this.marks=marks;
+        }
+        public void setId(int id){
+            this.ID=id;
+        }
+        public void setName(String name){
+            this.name=name;
+        }
+        public void setMarks(double marks){
+            this.marks=marks;
+        }
+        public int getId() {
+        return ID;
+        }
+        public String getName() {
+        return name;
+        }
+        public double getMarks() {
+        return marks;
+        }        
+        public String toString() {
+        return "ID: " + ID + ", Name: " + name + ", Marks: " + marks;
+        }
+}
+
+class Student{
+    public static void main(String args[]){      
+        Scanner sc=new Scanner(System.in);
+        ArrayList<Student1> std=new ArrayList();
+        
+        int choice;
+        while(true){
+            System.out.println("1. Add  Record :");
+            System.out.println("2. Delete Record :");
+            System.out.println("3. Update Record :");
+            System.out.println("4. View Record :");
+            System.out.println("5. Exit :");
+            System.out.println("Enter your choice :");
+            choice=sc.nextInt();
+            
+            switch(choice){
+                case 1:{
+                    System.out.println("Enter ID :");
+                    int id=sc.nextInt();
+                    sc.nextLine();
+                    System.out.println("Enter Name :");
+                    String name=sc.nextLine();
+                    System.out.println("Enter Marks :");
+                    double marks=sc.nextDouble();
+                    std.add(new Student1(id,name,marks));
+                    System.out.println("Add successfully..");  
+                    break;
+                }
+                
+                case 2:{
+                    System.out.println("Enter id you want to delete");
+                    int id=sc.nextInt();
+                    boolean remove = std.removeIf(s -> s.getId() == id);
+                    if(remove){
+                        System.out.println("Deleted element..");
+                    }
+                    break;
+                }
+                
+                case 3:{
+                 System.out.println("Enter id which you want to update");
+                 int id=sc.nextInt();
+                 for(Student1 ss: std){
+                     if(ss.getId()==id)
+                     {
+                         System.out.println("Enter name :");
+                         String name=sc.nextLine();
+                         System.out.println("Enter Marks :");
+                         double marks=sc.nextDouble();
+                         ss.setName(name);
+                         ss.setMarks(marks);
+                         System.out.println("Update successfully..");
+                     }
+                 }
+                 break;
+                }
+                
+                case 4:{
+                if(std.isEmpty()){
+                    System.out.println("ArrayList is empty..");
+                }
+                else{
+                    for(Student1 ss: std){
+                        System.out.println(ss);
+                    }
+                }
+                    break;
+                }
+                case 5:{
+                System.exit(0);    
+                }               
+                default:{
+                System.out.println("Invalid...");
+            }
+            
+            }
+        }
+    }
+}
+
+
